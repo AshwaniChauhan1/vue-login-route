@@ -1,42 +1,56 @@
 <template>
   <div>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card class="elevation-12 mt-12">
-          <v-toolbar color="primary" dark flat>
-            <v-toolbar-title>Login Form</v-toolbar-title>
-          </v-toolbar>
-          <v-card-text>
-            <v-form>
-              <v-text-field
-                label="Username"
-                prepend-icon="person"
-                v-model="username"
-                type="username"
-              />
-              <v-text-field
-                label="Password"
-                prepend-icon="lock"
-                v-model="password"
-                type="password"
-              />
-            </v-form>
-          </v-card-text>
-          <v-card-actions>
-            <p class="red--text ml-3">{{errors}}</p>
-            <v-spacer />
-            <v-btn color="primary" class="white--text">
-              <router-link to="/profile">Login</router-link>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
+      <section class="hero is-info">
+        <div class="hero-body">
+          <div class="container">
+            <h1 class="title has-text-centered">Login Form</h1>
+          </div>
+        </div>
+      </section>
+    <div class="columns is-centered section">
+    <div class="column  is-4 $section-padding">
+      <p class="has-text-danger">{{errors}}</p>
+      <div class="field ">
+        <label class="label">UserName</label>
+        <div class="control ">
+          <input class="input" type="text" placeholder="Username" v-model="login.username" />
+        </div>
+      </div>
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control ">
+            <input class="input" type="text" placeholder="Password" v-model="login.password" />
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+              <button class="button"  @click="loginFunction">Login</button>
+          </div>
+        </div>
+    </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-  name: "login"
+  name: "login",
+  computed: {
+    login() {
+      return this.$store.state.loginData.login;
+    },
+    errors() {
+      return this.$store.state.loginData.errors;
+    },
+    isLoggedIn(){
+      return this.$store.state.loginData.isLoggedIn;
+    }
+  },
+  methods:{
+  ...mapActions({
+      loginFunction: "loginData/loggedIn"
+    })
+  }
 };
 </script>

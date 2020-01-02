@@ -1,12 +1,12 @@
-// import Vue from "vue";
-// import Vuex from "vuex";
+import Vue from "vue";
+import Vuex from "vuex";
 
-// import formData from "./formData";
+import loginData from "./loginData";
 
-// Vue.use(Vuex)
+Vue.use(Vuex)
 
-// export default new Vuex.Store({
-//     modules: {
-//         formData
-//     }
-// })
+export default new Vuex.Store({
+    modules: {
+        loginData
+    }
+})
