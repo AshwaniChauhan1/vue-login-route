@@ -6,7 +6,7 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
-          <div class="navbar-item" >
+          <div class="navbar-item" v-if="loggedIn === 'false'">
             <button @click="openLogin" class="button is-white">Login</button>
           </div>
           <div class="navbar-item" v-if="loggedIn === 'true'">
@@ -25,11 +25,12 @@ export default {
   name: "index",
   data: () => {
     return {
-      loggedIn: ""
+      loggedIn: "false"
     };
   },
   mounted() {
-    this.loggedIn = localStorage.isLoggedIn;
+    if (localStorage.isLoggedIn === "true")
+      this.loggedIn = localStorage.isLoggedIn;
   },
   updated() {
     this.loggedIn = localStorage.isLoggedIn;
