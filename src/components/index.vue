@@ -6,7 +6,7 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
-          <div class="navbar-item" v-if="loggedIn === 'false'">
+          <div class="navbar-item" >
             <button @click="openLogin" class="button is-white">Login</button>
           </div>
           <div class="navbar-item" v-if="loggedIn === 'true'">
