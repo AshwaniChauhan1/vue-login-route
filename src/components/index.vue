@@ -6,12 +6,12 @@
       </div>
       <div class="navbar-menu">
         <div class="navbar-end">
-          <router-link class="is-light navbar-item" v-if="!isLoggedIn" to="/login">
-            <button class="button is-white">Login</button>
-          </router-link>
-          <router-link v-if="isLoggedIn" class="is-light navbar-item" to="/jn">
+          <div class="navbar-item" v-if="loggedIn === 'false'">
+            <button @click="openLogin" class="button is-white">Login</button>
+          </div>
+          <div class="navbar-item" v-if="loggedIn === 'true'">
             <button class="button is-white" @click="logoutFunction">Logout</button>
-          </router-link>
+          </div>
         </div>
       </div>
     </nav>
@@ -23,15 +23,24 @@
 import { mapActions } from "vuex";
 export default {
   name: "index",
-  computed: {
-    isLoggedIn() {
-      return this.$store.state.loginData.isLoggedIn;
-    }
+  data: () => {
+    return {
+      loggedIn: ""
+    };
   },
-  methods:{
-      ...mapActions({
-         logoutFunction: "loginData/loggedOut"
-      })
+  mounted() {
+    this.loggedIn = localStorage.isLoggedIn;
+  },
+  updated() {
+    this.loggedIn = localStorage.isLoggedIn;
+  },
+  methods: {
+    ...mapActions({
+      logoutFunction: "loginData/loggedOut"
+    }),
+    openLogin() {
+      this.$router.push("/login");
+    }
   }
 };
 </script>
