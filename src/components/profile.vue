@@ -3,7 +3,7 @@
     <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title has-text-centered">Hello {{uname}}</h1>
+          <h1 class="title has-text-centered">Hello {{username}}</h1>
         </div>
       </div>
     </section>
@@ -14,11 +14,11 @@ export default {
   name: "profile",
   data: () => {
     return {
-      uname: ""
+      username: ""
     };
   },
   mounted() {
-    this.uname = localStorage.username;
+    this.username = localStorage.username;
   }
 };
 </script>

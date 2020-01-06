@@ -2,26 +2,21 @@ import router from "../router";
 const state = {
     login: { username: "", password: "" },
     errors: '',
-    isLoggedIn: false
 }
 
 const mutations = {
     loggedIn(state) {
-        state.isLoggedIn = true;
         localStorage.username = state.login.username;
         localStorage.password = state.login.password;
-        localStorage.isLoggedIn = state.isLoggedIn;
+        localStorage.isLoggedIn = true;
         router.push('/profile')
     },
     loggedOut(state) {
-        state.isLoggedIn = false;
         localStorage.username = '';
         localStorage.password = '';
-        localStorage.isLoggedIn = state.isLoggedIn;
-        router.push('/')
-    },
-    clearLogin(state) {
+        localStorage.isLoggedIn = false;
         state.login = { username: "", password: "" };
+        router.push('/')
     }
 }
 
@@ -37,7 +32,6 @@ const actions = {
 
     },
     loggedOut({ commit }) {
-        commit('clearLogin');
         commit('loggedOut');
     }
 
