@@ -8,8 +8,9 @@
       </div>
     </section>
     <div class="columns is-centered section">
-      <div class="column is-4 $section-padding">
-        <p class="has-text-danger">{{errors}}</p>
+      <div class="column is-4">
+        <div v-if="showError" class="notification is-danger">API Failed</div>
+        <div v-if="errors !=''" class="notification is-danger">{{errors}}</div>
         <div class="field">
           <label class="label">UserName</label>
           <div class="control">
@@ -24,7 +25,11 @@
         </div>
         <div class="field">
           <div class="control">
-            <button class="button" @click="loginFunction">Login</button>
+            <button
+              class="button is-info"
+              :class="loading ? 'is-loading' : ''"
+              @click="loginFunction"
+            >Login</button>
           </div>
         </div>
       </div>
@@ -37,7 +42,13 @@ import { mapActions, mapState } from "vuex";
 export default {
   name: "login",
   computed: {
-    ...mapState("loginData", ["login", "errors"])
+    ...mapState("loginData", [
+      "login",
+      "errors",
+      "loading",
+      "showError",
+      "showSuccess"
+    ])
   },
   methods: {
     ...mapActions({

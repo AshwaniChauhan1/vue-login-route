@@ -7,7 +7,7 @@
       <div class="navbar-menu">
         <div class="navbar-end">
           <div class="navbar-item" v-if="loggedIn === 'false'">
-            <button @click="openLogin" class="button is-white">Login</button>
+            <button @click="openLoginFunction" class="button is-white">Login</button>
           </div>
           <div class="navbar-item" v-if="loggedIn === 'true'">
             <button class="button is-white" @click="logoutFunction">Logout</button>
@@ -37,11 +37,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      logoutFunction: "loginData/loggedOut"
-    }),
-    openLogin() {
-      this.$router.push("/login");
-    }
+      logoutFunction: "loginData/loggedOut",
+      openLoginFunction: "loginData/openLogin"
+    })
   }
 };
 </script>
